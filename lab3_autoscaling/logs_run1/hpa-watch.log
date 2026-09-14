@@ -1,0 +1,22 @@
+NAME                  REFERENCE               TARGETS     MINPODS   MAXPODS   REPLICAS   AGE
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)   1         8         1          95s
+keda-hpa-llm-worker   Deployment/llm-worker   198/5 (avg)   1         8         1          113s
+keda-hpa-llm-worker   Deployment/llm-worker   37600m/5 (avg)   1         8         5          2m6s
+keda-hpa-llm-worker   Deployment/llm-worker   19250m/5 (avg)   1         8         8          2m21s
+keda-hpa-llm-worker   Deployment/llm-worker   10750m/5 (avg)   1         8         8          2m33s
+keda-hpa-llm-worker   Deployment/llm-worker   750m/5 (avg)     1         8         8          2m48s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         8          3m1s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         8          3m28s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         7          3m43s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         7          3m56s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         6          4m11s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         6          4m23s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         5          4m38s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         5          4m53s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         4          5m6s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         4          5m21s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         3          5m33s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         3          5m48s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         2          6m1s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         2          6m16s
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         1          6m29s

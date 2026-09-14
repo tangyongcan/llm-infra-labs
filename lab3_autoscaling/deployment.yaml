@@ -1,0 +1,140 @@
+---
+# The queue broker. Single replica on purpose: it owns the queue-depth signal
+# that KEDA scales on, so it must not be load-balanced across replicas.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broker
+  namespace: llmserving
+  labels:
+    app: broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broker
+  template:
+    metadata:
+      labels:
+        app: broker
+    spec:
+      containers:
+        - name: broker
+          image: llmlab/queue-app:v1
+          imagePullPolicy: IfNotPresent
+          command:
+            ["uvicorn", "broker:app", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - containerPort: 8000
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 2
+            periodSeconds: 3
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: broker
+  namespace: llmserving
+spec:
+  selector:
+    app: broker
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+---
+# The "GPU replica" pool. This is the deployment KEDA scales 1 -> 8.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-worker
+  namespace: llmserving
+  labels:
+    app: llm-worker
+spec:
+  # No replicas field: KEDA/HPA owns this value. Setting it here would fight
+  # the autoscaler on every apply.
+  selector:
+    matchLabels:
+      app: llm-worker
+  template:
+    metadata:
+      labels:
+        app: llm-worker
+    spec:
+      # Cut scale-down latency: a replica that is going away should stop
+      # holding the rollout open.
+      terminationGracePeriodSeconds: 5
+      containers:
+        - name: worker
+          image: llmlab/queue-app:v1
+          imagePullPolicy: IfNotPresent
+          command:
+            ["uvicorn", "worker:app", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: BROKER_URL
+              value: "http://broker.llmserving.svc.cluster.local:8000"
+            - name: WORKER_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            # Simulated weight-loading time. This is the whole reason
+            # scale-up help arrives late.
+            - name: STARTUP_DELAY_S
+              value: "20"
+            # Batch capacity of one replica.
+            - name: WORKER_CONCURRENCY
+              value: "2"
+            # Decode is memory-bandwidth-bound, so only a sliver of the
+            # request time is actual CPU work.
+            - name: CPU_BURN_RATIO
+              value: "0.05"
+          # Readiness gated on warmup, so Kubernetes only counts a replica
+          # once it could actually serve.
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 2
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 1000m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llm-worker
+  namespace: llmserving
+spec:
+  selector:
+    app: llm-worker
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000

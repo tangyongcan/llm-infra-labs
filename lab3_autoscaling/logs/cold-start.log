@@ -1,0 +1,15 @@
+pod                              created(+s)  ready(+s)  created->ready
+llm-worker-67677ff4c6-vdr7j                0         23              23
+llm-worker-67677ff4c6-4f2tq              712        732              20
+llm-worker-67677ff4c6-572xp              712        732              20
+llm-worker-67677ff4c6-88gf6              712        732              20
+llm-worker-67677ff4c6-ghptc              712        732              20
+llm-worker-67677ff4c6-47jct              725        745              20
+llm-worker-67677ff4c6-5xwd6              725        745              20
+llm-worker-67677ff4c6-clgnk              725        745              20
+
+pods observed:                8
+pods added by the autoscaler:  7
+cold start (all) min/mean/max: 20s / 20.4s / 23s
+cold start (scaled-up only):   20s / 20.0s / 20s
+note: STARTUP_DELAY_S=20 simulates weight loading, and the image was already cached on the node. A real 7B+ replica on a cold node also pays image pull and can take minutes.

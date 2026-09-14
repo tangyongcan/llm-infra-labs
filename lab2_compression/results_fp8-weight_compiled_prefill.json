@@ -1,0 +1,31 @@
+{
+  "mode": "fp8-weight",
+  "compiled": true,
+  "stage": "prefill",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "gpu": "NVIDIA GeForce RTX 4060 Ti",
+  "sm_capability": [
+    8,
+    9
+  ],
+  "fp8_native": true,
+  "torch": "2.13.0+cu130",
+  "load_s": 1.9352165969999078,
+  "backend": "torchao Float8WeightOnlyConfig (e4m3, weight-only)",
+  "quantize_s": 0.5339661250000063,
+  "total_params": 3085938688,
+  "nonzero_params": 3085938688,
+  "weight_mem_gib": 3.16982364654541,
+  "load_peak_mem_gib": 6.054728984832764,
+  "smi_before_mib": 1416,
+  "smi_after_load_mib": 7677,
+  "compile_setup_s": 0.3580195630001981,
+  "prefill_batch": 8,
+  "prefill_seq_len": 512,
+  "prefill_tokens": 4096,
+  "prefill_best_s": 0.9474514040002759,
+  "prefill_mean_s": 0.9515222646668917,
+  "prefill_tok_s": 4323.176875041928,
+  "prefill_peak_mem_gib": 4.498101234436035,
+  "smi_end_mib": 8889
+}

@@ -1,0 +1,30 @@
+{
+  "mode": "fp8-dynamic",
+  "compiled": true,
+  "stage": "decode1",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "gpu": "NVIDIA GeForce RTX 4060 Ti",
+  "sm_capability": [
+    8,
+    9
+  ],
+  "fp8_native": true,
+  "torch": "2.13.0+cu130",
+  "load_s": 1.8243313740003941,
+  "backend": "torchao Float8DynamicActivationFloat8WeightConfig (e4m3 act+weight, per-row, _scaled_mm)",
+  "quantize_s": 0.535329843999989,
+  "total_params": 3085938688,
+  "nonzero_params": 3085938688,
+  "weight_mem_gib": 3.17128849029541,
+  "load_peak_mem_gib": 6.054728984832764,
+  "smi_before_mib": 1418,
+  "smi_after_load_mib": 7763,
+  "compile_setup_s": 0.35880665400009093,
+  "decode1_batch": 1,
+  "decode1_new_tokens": 128,
+  "decode1_best_s": 3.7237517489998027,
+  "decode1_mean_s": 3.7580476996666525,
+  "decode1_tok_s": 34.37393484524867,
+  "decode1_peak_mem_gib": 3.2111425399780273,
+  "smi_end_mib": 7782
+}

@@ -1,0 +1,7 @@
+tracking.db
+tracking.db-journal
+mlartifacts/
+mlruns/
+outputs/
+__pycache__/
+*.pyc

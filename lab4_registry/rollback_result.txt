@@ -1,0 +1,6 @@
+qwen25-3b-lora-sft v1 -> Production  (transition_model_version_stage 0.0368s)
+rollback_seconds=0.0368
+ ver  stage         run                               eval_loss  git_commit      data_version
+   1  Production    660ad680f6dd402a84a98ad5b71b9f2c     3.5126  d308216178cf    toy_sft_v1.jsonl@44ea7b474451
+   2  Archived      c97559859ce541b685414628fc591d55     3.8399  d308216178cf    toy_sft_v1.jsonl@44ea7b474451
+alias @production -> v1

@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+*.egg-info/
+.DS_Store
+
+# Local caches and downloaded weights (not part of the evidence)
+.cache/
+hf_cache/
+transformers_cache/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+
+# Lab 4: local MLflow db + LoRA adapters (tens of MB, not the evidence)
+lab4_registry/mlartifacts/
+lab4_registry/mlruns/
+lab4_registry/outputs/
+lab4_registry/tracking.db
+lab4_registry/tracking.db-journal

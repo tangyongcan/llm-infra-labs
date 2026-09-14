@@ -1,0 +1,28 @@
+{
+  "mode": "int8",
+  "compiled": false,
+  "stage": "ppl",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "gpu": "NVIDIA GeForce RTX 4060 Ti",
+  "sm_capability": [
+    8,
+    9
+  ],
+  "fp8_native": true,
+  "torch": "2.13.0+cu130",
+  "load_s": 5.835178578000068,
+  "quantize_s": 0.0,
+  "backend": "bitsandbytes LLM.int8()",
+  "total_params": 3085938688,
+  "nonzero_params": 3085938688,
+  "weight_mem_gib": 3.17031192779541,
+  "load_peak_mem_gib": 3.245476722717285,
+  "smi_before_mib": 1418,
+  "smi_after_load_mib": 4933,
+  "ppl_window": 2048,
+  "ppl_num_windows": 24,
+  "ppl_eval_tokens": 49128,
+  "mean_nll": 2.149468493217017,
+  "perplexity": 8.580296516418457,
+  "smi_end_mib": 8309
+}

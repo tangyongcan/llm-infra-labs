@@ -1,0 +1,9 @@
+NAME                                                      REFERENCE               TARGETS     MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)   1         8         1          8m15s
+
+NAME                                           SCALETARGETKIND      SCALETARGETNAME   MIN   MAX   READY   ACTIVE   FALLBACK   PAUSED   TRIGGERS      AUTHENTICATIONS   AGE
+scaledobject.keda.sh/llm-worker-queue-scaler   apps/v1.Deployment   llm-worker        1     8     True    False    False      False    metrics-api                     8m15s
+
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/broker-855b5f8596-lw7xv       1/1     Running   0          8m46s
+pod/llm-worker-67677ff4c6-vdr7j   1/1     Running   0          8m46s

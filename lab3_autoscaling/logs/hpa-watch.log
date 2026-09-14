@@ -1,0 +1,21 @@
+NAME                  REFERENCE               TARGETS     MINPODS   MAXPODS   REPLICAS   AGE
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)   1         8         1          10m
+keda-hpa-llm-worker   Deployment/llm-worker   190/5 (avg)   1         8         1          11m
+keda-hpa-llm-worker   Deployment/llm-worker   36/5 (avg)    1         8         5          11m
+keda-hpa-llm-worker   Deployment/llm-worker   18250m/5 (avg)   1         8         8          11m
+keda-hpa-llm-worker   Deployment/llm-worker   9750m/5 (avg)    1         8         8          12m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         8          12m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         8          12m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         7          13m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         7          13m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         6          13m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         6          13m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         5          14m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         5          14m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         4          14m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         4          14m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         3          15m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         3          15m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         2          15m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         2          15m
+keda-hpa-llm-worker   Deployment/llm-worker   0/5 (avg)        1         8         1          15m

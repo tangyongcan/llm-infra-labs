@@ -1,0 +1,28 @@
+{
+  "mode": "bf16",
+  "compiled": false,
+  "stage": "ppl",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "gpu": "NVIDIA GeForce RTX 4060 Ti",
+  "sm_capability": [
+    8,
+    9
+  ],
+  "fp8_native": true,
+  "torch": "2.13.0+cu130",
+  "load_s": 1.7542564109999148,
+  "quantize_s": 0.0,
+  "backend": "native bf16",
+  "total_params": 3085938688,
+  "nonzero_params": 3085938688,
+  "weight_mem_gib": 5.74800968170166,
+  "load_peak_mem_gib": 5.748046875,
+  "smi_before_mib": 1418,
+  "smi_after_load_mib": 7497,
+  "ppl_window": 2048,
+  "ppl_num_windows": 24,
+  "ppl_eval_tokens": 49128,
+  "mean_nll": 2.136324958447194,
+  "perplexity": 8.46825885772705,
+  "smi_end_mib": 10708
+}

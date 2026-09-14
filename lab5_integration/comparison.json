@@ -1,0 +1,37 @@
+{
+  "concurrency": 32,
+  "num_requests": 32,
+  "max_new_tokens": 128,
+  "columns": [
+    {
+      "name": "BF16 + naive HF (Lab 1 baseline)",
+      "available": true,
+      "p95_e2e_s": 154.22129726529997,
+      "p50_e2e_s": 82.54422476999997,
+      "qps": 0.1973217247346279,
+      "tok_s": 25.25718076603237,
+      "generated_tokens": 4096
+    },
+    {
+      "name": "BF16 + vLLM (Lab 1)",
+      "available": true,
+      "p95_e2e_s": 5.076088801150036,
+      "p50_e2e_s": 5.073003580500085,
+      "qps": 6.302313438366992,
+      "tok_s": 806.696120110975,
+      "generated_tokens": 4096
+    },
+    {
+      "name": "FP8 + vLLM (Lab 5)",
+      "available": true,
+      "p95_e2e_s": 3.1091087626480656,
+      "p50_e2e_s": 3.1066502670000773,
+      "qps": 10.288705589813663,
+      "tok_s": 1316.9543154961489,
+      "generated_tokens": 4096
+    }
+  ],
+  "speedup_vs_naive": 52.1417781222551,
+  "speedup_vs_bf16_vllm": 1.6325283866680542,
+  "qps_delta_vs_bf16_vllm_pct": 63.252838666805424
+}

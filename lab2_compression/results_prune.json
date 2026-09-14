@@ -1,0 +1,57 @@
+{
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "method": "torch.nn.utils.prune.ln_structured (L2, dim=0, MLP only)",
+  "note": "Masking zeroes weights but does not shrink storage; dense GEMMs still read the zeros, so neither memory nor speed improves. Real gains need physical removal or sparse kernels.",
+  "sparsity_levels": [
+    0.0,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "rows": [
+    {
+      "requested_sparsity": 0.0,
+      "mem_alloc_gib": 5.74800968170166,
+      "target_params": 2434793472,
+      "target_zero_params": 0,
+      "target_sparsity": 0.0,
+      "model_total_params": 3085938688,
+      "model_zero_fraction": 0.0,
+      "decode_tok_s": 24.973762009576717,
+      "perplexity": 8.46825885772705
+    },
+    {
+      "requested_sparsity": 0.1,
+      "mem_alloc_gib": 14.96785831451416,
+      "target_params": 2434793472,
+      "target_zero_params": 243588096,
+      "target_sparsity": 0.1000446644864341,
+      "model_total_params": 3085938688,
+      "model_zero_fraction": 0.07893484629076337,
+      "decode_tok_s": 2.1798518860827576,
+      "perplexity": 10551.25390625
+    },
+    {
+      "requested_sparsity": 0.2,
+      "mem_alloc_gib": 14.96785831451416,
+      "target_params": 2434793472,
+      "target_zero_params": 487176192,
+      "target_sparsity": 0.2000893289728682,
+      "model_total_params": 3085938688,
+      "model_zero_fraction": 0.15786969258152675,
+      "decode_tok_s": 1.0471872868278904,
+      "perplexity": 31278.94140625
+    },
+    {
+      "requested_sparsity": 0.3,
+      "mem_alloc_gib": 14.96688175201416,
+      "target_params": 2434793472,
+      "target_zero_params": 730220544,
+      "target_sparsity": 0.29991067102713176,
+      "model_total_params": 3085938688,
+      "model_zero_fraction": 0.23662833835278066,
+      "decode_tok_s": 0.9832945984107546,
+      "perplexity": 1471099.875
+    }
+  ]
+}

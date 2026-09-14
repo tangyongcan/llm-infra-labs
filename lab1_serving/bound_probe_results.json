@@ -1,0 +1,38 @@
+{
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "sampler": "nvidia-smi dmon -s u -d 1",
+  "note": "dmon `sm` is SM activity %; `mem` is memory-controller busy %, a proxy for HBM bandwidth (not GB/s). GeForce does not expose DRAM throughput counters here.",
+  "decode": {
+    "concurrency": 1,
+    "new_tokens": 256,
+    "requests": 6,
+    "wall_s": 50.999622246999934,
+    "n": 52,
+    "sm_mean": 93.40384615384616,
+    "sm_p50": 95.0,
+    "sm_max": 98.0,
+    "mem_mean": 91.26923076923077,
+    "mem_p50": 93.0,
+    "mem_max": 96.0,
+    "n_busy": 51,
+    "sm_mean_busy": 94.92156862745098,
+    "mem_mean_busy": 92.92156862745098
+  },
+  "prefill": {
+    "concurrency": 32,
+    "prompt_tokens_approx": 1024,
+    "max_tokens": 1,
+    "rounds": 8,
+    "wall_s": 50.166557681000995,
+    "n": 51,
+    "sm_mean": 96.52941176470588,
+    "sm_p50": 99.0,
+    "sm_max": 100.0,
+    "mem_mean": 47.68627450980392,
+    "mem_p50": 50.0,
+    "mem_max": 50.0,
+    "n_busy": 49,
+    "sm_mean_busy": 99.34693877551021,
+    "mem_mean_busy": 49.204081632653065
+  }
+}

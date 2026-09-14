@@ -1,0 +1,56 @@
+---
+# KEDA scales on queue depth, NOT on CPU utilisation.
+#
+# Why metrics-api and not the cpu trigger: for LLM decode the host CPU is
+# idle while the GPU waits on memory bandwidth, so CPU% is flat and lags.
+# Queue depth reacts on the first unserved request.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: llm-worker-queue-scaler
+  namespace: llmserving
+spec:
+  scaleTargetRef:
+    name: llm-worker
+  minReplicaCount: 1
+  maxReplicaCount: 8
+  # NOTE: KEDA warns that pollingInterval and cooldownPeriod only take effect
+  # when minReplicaCount is 0 (scale-to-zero). With minReplicaCount: 1 the
+  # scaling cadence is owned by the HPA controller instead, which is why the
+  # real tuning below lives in behavior.scaleUp / behavior.scaleDown.
+  # They are left here because scale-to-zero is the obvious next step, and
+  # the warning itself is worth keeping visible.
+  pollingInterval: 5
+  cooldownPeriod: 30
+  advanced:
+    horizontalPodAutoscalerConfig:
+      name: keda-hpa-llm-worker
+      behavior:
+        scaleUp:
+          # React fast: queued requests are already accruing latency, and a
+          # new replica still needs its warmup before it helps.
+          stabilizationWindowSeconds: 0
+          policies:
+            - type: Pods
+              value: 4
+              periodSeconds: 15
+        scaleDown:
+          # Scale down slowly. A wrong scale-down is far more expensive than
+          # a wrong scale-up, because recovering costs another cold start.
+          stabilizationWindowSeconds: 60
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 30
+  triggers:
+    - type: metrics-api
+      metadata:
+        url: "http://broker.llmserving.svc.cluster.local:8000/metrics"
+        # The JSON field in the broker's /metrics response.
+        valueLocation: "queue_depth"
+        # One replica is expected to absorb ~5 queued requests. HPA computes
+        # desiredReplicas = ceil(queue_depth / targetValue).
+        targetValue: "5"
+        # Below this, KEDA treats the workload as idle and holds minReplicas.
+        activationTargetValue: "1"
+        format: "json"
